@@ -10,8 +10,8 @@ public class View {
         JFrame f = new JFrame();
         f.add(textPane1);
         f.add(panel1);
-        f.add(textArea1);
+        f.add(textArea1)
 
 
-    }
+    };
 }
