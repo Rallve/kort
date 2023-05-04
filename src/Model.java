@@ -33,15 +33,22 @@ class Sword {
 }
 */
 
-class Backpack extends Item {
-    public static void main(String[] args) {
+class Inventory extends Item {
+    static ArrayList<Object> Backpack = new ArrayList<>();
+    public static void generateBackpack() {
         Item Longsword = new Item();
         Longsword.die = 6;
         Longsword.numOfDice = 2;
+        Backpack.add(Longsword);
 
         Item Greataxe = new Item();
         Greataxe.die = 12;
         Greataxe.numOfDice = 1;
+        Backpack.add(Greataxe);
+        System.out.println(Longsword.die);
+    }
+    public static ArrayList<Object> getBackpack() {
+        return Backpack;
     }
 }
 
