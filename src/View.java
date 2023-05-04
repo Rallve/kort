@@ -6,12 +6,12 @@ public class View {
     private JTextArea textArea1;
 
     public static void main(String[] args) {
-
+        /*
         JFrame f = new JFrame();
         f.add(textPane1);
         f.add(panel1);
-        f.add(textArea1)
+        f.add(textArea1);
 
-
-    };
+        */
+    }
 }
