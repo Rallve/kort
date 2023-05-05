@@ -45,7 +45,7 @@ class Inventory extends Item {
         Greataxe.die = 12;
         Greataxe.numOfDice = 1;
         Backpack.add(Greataxe);
-        System.out.println(Longsword.die);
+        System.out.println(Longsword);
     }
     public static ArrayList<Object> getBackpack() {
         return Backpack;
