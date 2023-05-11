@@ -9,6 +9,7 @@ public class Database {
         JOptionPane.showConfirmDialog(null, pf, "password?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         String password = new String(pf.getPassword());
 
+        // Skapa connection till databasen
         try {
             conn = DriverManager.getConnection("jdbc:mysql://db.umea-ntig.se:3306/te20? "+
                     "allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",user,password);
@@ -16,25 +17,30 @@ public class Database {
             e.printStackTrace();
         }
 
-
+        // MySQL-kommandot för att hämta data från tabellerna
         try {
             Statement stmt = conn.createStatement();
-            String SQLQuery = "SELECT eho02forum.*, eho02users.name FROM eho02forum JOIN eho02users ON eho02forum.authorId = eho02users.id ORDER BY id DESC LIMIT 20\n";
+            String SQLQuery =
+                    "SELECT lgl23players.*, lgl23inventory.item_name\n" +
+                    "FROM lgl23players\n" +
+                    "JOIN lgl23inventory\n" +
+                    "ON lgl23players.id=lgl23inventory.player_id;";
             ResultSet result = stmt.executeQuery(SQLQuery);
 
+            /* Printar ut metadata, behövs ej just nu
             ResultSetMetaData metadata = result.getMetaData();
-
             int numCols = metadata.getColumnCount();
             for (int i = 1 ; i <= numCols ; i++) {
                 System.out.println(metadata.getColumnClassName(i));
             }
+            */
 
+            // Printar ut datan från de angivna kolumnerna för varje rad
             while (result.next()) {
                 String output = "";
                 output += result.getInt("id") + ", " +
-                        result.getString("title") + ", " +
-                        result.getString("content") + ", " +
-                        result.getString("name");
+                        result.getString("name") + ", " +
+                        result.getString("item_name");
                 System.out.println(output);
             }
 

@@ -5,5 +5,6 @@ public class Main {
         //Model.Attack();
         Inventory.generateBackpack();
         System.out.println(Inventory.getBackpack().get(0));
+
     }
 }
