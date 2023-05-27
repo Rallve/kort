@@ -10,4 +10,4 @@ public class Player {
         ArrayList<String> Backpack = new ArrayList<>();
         Backpack.add("Sword");
     }
-}
+} // CODE MIGHT BE USELESS AT THIS POINT

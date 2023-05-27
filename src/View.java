@@ -1,17 +1,27 @@
 import javax.swing.*;
 
 public class View {
-    private JTextPane textPane1;
-    private JPanel panel1;
-    private JTextArea textArea1;
+    private JPanel login;
+
+    private JPanel base;
+    private JTextArea gameInfo;
+    private JButton attackButton;
+    private JProgressBar xpBar;
+    private JTextArea playerHP;
 
     public static void main(String[] args) {
-        /*
-        JFrame f = new JFrame();
-        f.add(textPane1);
-        f.add(panel1);
-        f.add(textArea1);
+        JFrame frame = new JFrame("View");
+        frame.setContentPane(new View().base);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
-        */
+    public JPanel getPanel() {
+        return base;
+    }
+
+    public JPanel getLogin() {
+        return login;
     }
 }
