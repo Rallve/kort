@@ -18,21 +18,23 @@ public class Main extends JFrame {
         View view = new View();
         Model model = new Model();
 
-        String username = JOptionPane.showInputDialog("Username?\n" +
-                "Type the username of your account to log in.\n" +
-                "Typing a username that doesn't exist will create a new account.\n" +
-                "(case sensitive)");
-
-        model.login(username);
-
+        boolean loggedIn = false;
+        while (!loggedIn) {
+            String username = JOptionPane.showInputDialog(null, "Username?\n" +
+                    "Type the username of your account to log in.\n" +
+                    "Typing a username that doesn't exist will create a new account.\n" +
+                    "(case sensitive)");
+            if (username.isEmpty()) { // Creates NullPointerException rather than exiting properly. Good enough.
+                System.out.println("Exiting program...");
+                System.exit(0);
+            }
+            loggedIn = model.login(username);
+        }
 
         Main controller = new Main(view, model);
         controller.setVisible(true);
 
-        //Model.Attack();
-        //Inventory.generateBackpack();
-        //System.out.println(Inventory.getBackpack().get(0));
-
-
+        ArrayList<Enemy> enemies = model.createEnemyList(3);
+        model.rollInitiative();
     }
 }
