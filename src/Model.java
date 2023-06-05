@@ -267,7 +267,6 @@ public class Model {
                 if (choice.HP <= 0) {
                     enemies.remove(choice);
                     if (enemies.isEmpty()) {
-                        System.out.println();
                         break;
                     }
                 }
@@ -276,6 +275,9 @@ public class Model {
                 System.out.println("Player takes " + dmg + " damage.");
                 player.HP -= dmg;
                 System.out.println("Player HP: " + player.HP);
+                if (player.HP <= 0) {
+                    break;
+                }
             }
         }
     }
