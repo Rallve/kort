@@ -1,9 +1,10 @@
+
 import javax.swing.*;
 
 public class View {
-    private JPanel login;
-
     private JPanel base;
+
+    private JPanel login;
     private JTextArea gameInfo;
     private JButton attackButton;
     private JProgressBar xpBar;
@@ -24,4 +25,5 @@ public class View {
     public JPanel getLogin() {
         return login;
     }
+
 }
