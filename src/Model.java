@@ -56,21 +56,6 @@ public class Model {
         }
     }
 
-    public ResultSet getWeaponData(String weapon) {
-        try {
-            String SQLQuery = "";
-            Statement stmt = conn.createStatement();
-            SQLQuery =
-                    "SELECT * FROM lgl23items WHERE item_name='" + weapon + "';";
-            ResultSet result = stmt.executeQuery(SQLQuery);
-            return result;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.exit(0);
-            return null;
-        }
-    }
-
     public int login(String username) {
         try {
             int playerID = 0;
