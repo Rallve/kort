@@ -4,16 +4,16 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 
-public class Main extends JFrame {
+public class Main {
     Model model;
     //View view;
     public Main(Model m) {
         this.model = m;
         //this.view = v;
         //this.setContentPane(view.getPanel());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
-        this.setVisible(true);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.pack();
+        //this.setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -33,8 +33,8 @@ public class Main extends JFrame {
             playerID = model.login(username);
         }
 
-        Main controller = new Main(model);
-        controller.setVisible(true);
+        //Main controller = new Main(model);
+        //controller.setVisible(true);
 
         Player player = new Player(playerID);
         System.out.println("Player HP: " + player.HP);
