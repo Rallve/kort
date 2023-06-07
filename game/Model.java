@@ -13,23 +13,23 @@ public class Model {
         String password = "";
 
         try {
-            File myObj = new File("game/databaselogin.txt");
+            File myObj = new File("databaselogin.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
-                System.out.println("game/databaselogin.txt exists.");
+                System.out.println("databaselogin.txt exists.");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         try {
-            BufferedReader brTest = new BufferedReader(new FileReader("game/databaselogin.txt"));
+            BufferedReader brTest = new BufferedReader(new FileReader("databaselogin.txt"));
             password = brTest.readLine();
             if (password == null) {
                 password = JOptionPane.showInputDialog("Password for database?");
                 try {
-                    FileWriter myWriter = new FileWriter("game/databaselogin.txt");
+                    FileWriter myWriter = new FileWriter("databaselogin.txt");
                     myWriter.write(password);
                     myWriter.close();
                     System.out.println("Successfully wrote to the file.");
