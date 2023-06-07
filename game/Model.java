@@ -1,6 +1,5 @@
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.lang.Math;
@@ -12,11 +11,35 @@ public class Model {
     public Model() {
         String user = "te20";
         String password = "";
+
         try {
-            BufferedReader brTest = new BufferedReader(new FileReader("src/databaselogin.txt"));
+            File myObj = new File("game/databaselogin.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("game/databaselogin.txt exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        try {
+            BufferedReader brTest = new BufferedReader(new FileReader("game/databaselogin.txt"));
             password = brTest.readLine();
+            if (password == null) {
+                password = JOptionPane.showInputDialog("Password for database?");
+                try {
+                    FileWriter myWriter = new FileWriter("game/databaselogin.txt");
+                    myWriter.write(password);
+                    myWriter.close();
+                    System.out.println("Successfully wrote to the file.");
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+            }
         } catch (Exception e) {
-            System.out.println("You need the database password inside a file titled 'databaselogin.txt' within the 'src' folder.");
+            System.out.println("Could not read or create file.");
             e.printStackTrace();
         }
 

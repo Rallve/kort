@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class Main extends JFrame {
     Model model;
-    View view;
-    public Main(View v, Model m) {
+    //View view;
+    public Main(Model m) {
         this.model = m;
-        this.view = v;
+        //this.view = v;
         //this.setContentPane(view.getPanel());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -17,7 +17,7 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        View view = new View();
+        //View view = new View();
         Model model = new Model();
 
         int playerID = 0;
@@ -33,7 +33,7 @@ public class Main extends JFrame {
             playerID = model.login(username);
         }
 
-        Main controller = new Main(view, model);
+        Main controller = new Main(model);
         controller.setVisible(true);
 
         Player player = new Player(playerID);
