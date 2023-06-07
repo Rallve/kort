@@ -152,17 +152,6 @@ public class Model {
         return total;
     }
 
-    public static Integer Attack() {
-        int totalDmg = 0;
-        ArrayList<Integer> AttackDmg = rollList(10, 4);
-        for (int i = 0; i < AttackDmg.size(); i++) {
-            System.out.println(AttackDmg.get(i));
-            totalDmg += AttackDmg.get(i);
-        }
-        System.out.println("----------- \nTotal damage: " + totalDmg);
-        return totalDmg;
-    }
-
     public void backpackInsert(int playerID, String item) {
         try {
             Statement stmt = conn.createStatement();
@@ -258,22 +247,36 @@ public class Model {
 
     public void battleEncounter(ArrayList<Enemy> enemies, Enemy[] order, Player player) {
         System.out.println(player.HP > 0 && enemies != null);
+        ArrayList<String> enemName = new ArrayList<>();
+        for (int i = 0; i < enemies.size(); i++) {
+            enemName.add(enemies.get(i).name);
+        }
+        Object[] optionName = enemName.toArray();
+
         for (int i = 0; i < order.length; i++) {
             if (order[i] != null && order[i].HP <= 0) {
                 continue;
             }
             if (order[i] == null) {
                 Object[] options = enemies.toArray();
-                Enemy choice = (Enemy) JOptionPane.showInputDialog(null, "Who do you want to attack?\nYour HP: " + player.HP,
+
+                String listChoice = (String) JOptionPane.showInputDialog(null, "Who do you want to attack?\nYour HP: " + player.HP,
                     "Your turn", 1, null, // Use default icon
-                    options, // Array of choices
-                    options[0]); // Initial choice
+                    optionName, // Array of choices
+                    optionName[0]); // Initial choice
+
+                int index = enemName.indexOf(listChoice);
+                Enemy choice = (Enemy) options[index];
 
                 int dmg = player.attack(choice);
                 System.out.println("Enemy takes " + dmg + " damage.");
                 choice.HP -= dmg;
                 if (choice.HP <= 0) {
                     enemies.remove(choice);
+                    for (int n = 0; n < enemies.size(); n++) {
+                        enemName.add(enemies.get(n).name);
+                    }
+                    optionName = enemName.toArray();
                     if (enemies.isEmpty()) {
                         break;
                     }
